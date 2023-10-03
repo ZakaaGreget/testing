@@ -1,0 +1,71 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+import static oracle.jrockit.jfr.events.Bits.intValue;
+public class Belanja {
+    public static void main(String[] args) {
+        int[]kodebarang=new int[3];
+        String[]barang=new String[3];
+        int[]harga=new int[3];
+        int[]banyaknya=new int[3];
+        int[]subtotal=new int[3];
+        int total = 0;
+        int y,z=0,x = 0;
+        Scanner input=new Scanner(System.in);
+        ArrayList SemuaTransaksi=new ArrayList();
+        do{
+            System.out.println("DAFTAR BARANG");
+            System.out.println("--------------------------------------");
+            System.out.println("1. Pensil");
+            System.out.println("2. Penggaris");
+            System.out.println("3. Penghapus");
+            System.out.println("--------------------------------------");
+            for(int i=0;i<3;i++){
+                kodebarang[i]=i+1;
+                System.out.print("Jumlah barang "+(i+1)+" = ");
+                banyaknya[i]=input.nextInt();
+                switch(kodebarang[i]){
+                    case 1:
+                        barang[i]="Pensil/Pena";
+                        harga[i]=2500;
+                    break;
+                    case 2:
+                        barang[i]="Penggaris";
+                        harga[i]=5000;
+                    break;
+                    case 3:
+                        barang[i]="Penghapus";
+                        harga[i]=500;
+                    break;
+                    default:
+                        System.out.println("Kode barang tidak ditemukan");
+                } 
+            }
+            System.out.println("--------------------------------------");
+            System.out.println("Nama Barang\tHarga\tQty\tSubtotal");
+            for(int i=0;i<3;i++){
+                    subtotal[i]=harga[i]*banyaknya[i];
+                    total+=subtotal[i];
+                    System.out.println(barang[i]+"\t"+harga[i]+"\t"+banyaknya[i]+"\t"+subtotal[i]);
+            }
+            System.out.println("--------------------------------------");
+            System.out.println("Total Bayar\t\t\t"+total);
+            System.out.println("======================================");
+            System.out.println("Apakah ingin mengakhiri transaksi?");
+            System.out.println("1=Ya");
+            System.out.println("2=Tidak");
+            System.out.print("Jawaban = ");y=input.nextInt();
+            SemuaTransaksi.add(total);
+        }while(y==2);
+        System.out.println("======================================");
+        System.out.println("Total Seluruh Transaksi Anda");
+        System.out.println("--------------------------------------");
+        
+        for(int i=0;i<SemuaTransaksi.size();i++){
+            System.out.println("Transaksi "+(i+1));
+            System.out.println(SemuaTransaksi.get(i));
+            
+            z=+intValue(SemuaTransaksi.get(i));
+        }
+        System.out.println("Total = "+z);
+    }
+}
